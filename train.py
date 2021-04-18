@@ -15,8 +15,10 @@ def train(epochs, batch_size, data, model):
             print('input ids', input_data['input_ids'].size())
             print('attention_mask', input_data['attention_mask'].size())
             print('token type ids', input_data['token_type_ids'].size())
+            label = input_data['labels']
+            print('labels', label.size())
             output = model(input_data['input_ids'], input_data['attention_mask'], input_data['token_type_ids'])
-            loss = criterion(output, labels)
+            loss = criterion(output, label)
         print({"Epoch": epoch, "Loss": loss.item()})
     return
 if __name__ == "__main__":
